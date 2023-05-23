@@ -84,7 +84,6 @@ public class BbsDAO {
 		            bbs.setBbsContent(rs.getString(5));
 		            bbs.setBbsAvailable(rs.getInt(1));
 		            list.add(bbs);
-
 		         }         
 		      } catch(Exception e) {
 		         e.printStackTrace();
