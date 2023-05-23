@@ -69,7 +69,7 @@ public class BbsDAO {
 	}
 		
 	   public ArrayList<Bbs> getList(int pageNumber) {
-		      String SQL = "SELECT * FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by bbsID desc) WHERE ROWNUM <=10";
+		      String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'YY/MM/DD'),BBSCONTENT,BBSAVAILABLE FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by bbsID desc) WHERE ROWNUM <=10";
 		      ArrayList<Bbs> list = new ArrayList<Bbs>();
 		      try {
 		         PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -84,11 +84,13 @@ public class BbsDAO {
 		            bbs.setBbsContent(rs.getString(5));
 		            bbs.setBbsAvailable(rs.getInt(1));
 		            list.add(bbs);
+
 		         }         
 		      } catch(Exception e) {
 		         e.printStackTrace();
 		      }
 		      return list;
+		      
 		   }
 	   
 	   

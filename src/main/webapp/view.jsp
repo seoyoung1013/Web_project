@@ -31,7 +31,7 @@
 			script.println("history.back()");
 			script.println("</script>");
 		}
-		
+		Bbs bbs = new BbsDAO().getBbs(bbsID);
 		
 	%>
 	<nav class="navbar navbar-default">
