@@ -31,7 +31,9 @@
 			script.println("history.back()");
 			script.println("</script>");
 		}
-		Bbs bbs = new BbsDAO().getBbs(bbsID);
+		BbsDAO bbsDAO = new BbsDAO();
+		Bbs bbs = bbsDAO.getBbs(bbsID);
+		bbsDAO.increasecount(bbsID);
 		
 	%>
 	<nav class="navbar navbar-default">
@@ -103,6 +105,14 @@
 					<tr>
 						<td>작성일자</td>
 						<td colspan="2"><%= bbs.getBbsDate().substring(0, 11) + bbs.getBbsDate().substring(11, 13) + "시" + bbs.getBbsDate().substring(14, 16) + "분 " %></td>
+					</tr>
+					<tr>
+						<td>조회수</td>
+						<td colspan="2"><%= bbs.getBbsCount() %></td>
+					</tr>
+					<tr>
+						<td>좋아요</td>
+						<td colspan="2"><%= bbs.getBbsLike_count() %></td>
 					</tr>
 					<tr>
 						<td>내용</td>
