@@ -21,19 +21,6 @@ public class BbsDAO {
 		}
 	}
 	
-	public String getDate() {
-		String SQL = "SELECT NOW()";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				return rs.getString(1);
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return "";
-	}
 	
 	public int getNext() {
 		String SQL = "SELECT bbsID FROM BBS ORDER BY bbsID DESC";
@@ -51,15 +38,14 @@ public class BbsDAO {
 	}
 	
 	public int write(String bbsTitle, String userID, String bbsContent) {
-		String SQL = "INSERT INTO BBS VALUES (?, ?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO BBS (bbsID, bbsTitle, userID, bbsContent, bbsAvailable) VALUES (?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext());
 			pstmt.setString(2, bbsTitle);
 			pstmt.setString(3, userID);
-			pstmt.setString(4, getDate());
-			pstmt.setString(5, bbsContent);
-			pstmt.setInt(6, 1);
+			pstmt.setString(4, bbsContent);
+			pstmt.setInt(5, 1);
 			
 			return pstmt.executeUpdate(); 
 		} catch(Exception e) {
@@ -69,7 +55,7 @@ public class BbsDAO {
 	}
 		
 	   public ArrayList<Bbs> getList(int pageNumber) {
-		      String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'YY/MM/DD'),BBSCONTENT,BBSAVAILABLE FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by bbsID desc) WHERE ROWNUM <=10";
+		      String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by bbsID desc) WHERE ROWNUM <=10";
 		      ArrayList<Bbs> list = new ArrayList<Bbs>();
 		      try {
 		         PreparedStatement pstmt = conn.prepareStatement(SQL);
