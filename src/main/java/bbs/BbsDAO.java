@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class BbsDAO {
-	private Connection conn;
+	private static Connection conn;
 	private ResultSet rs;
 
 	public BbsDAO() {
@@ -112,7 +112,6 @@ public class BbsDAO {
 				bbs.setBbsContent(rs.getString(5));
 				bbs.setBbsAvailable(rs.getInt(1));
 				bbs.setBbsCount(rs.getInt(7));
-				System.out.println(bbs.getBbsCount());
 				bbs.setBbsLike_count(rs.getInt(8));
 				return bbs;
 			}			
@@ -137,8 +136,47 @@ public class BbsDAO {
 		return -1; // 데이터베이스 오류
 	}
 
+	public static int incrementLikeCount(int bbsID) {
+		String SQL = "UPDATE BBS SET like_count = like_count + 1 WHERE bbsid = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			pstmt.executeUpdate();
+			
+			//좋아요 수가 증가시, 조회수도 증가하기 때문에
+			String sql = "update BBS set COUNT = COUNT - 1 where bbsid = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bbsID);
+			return pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터베이스 오류
+	}
+
+	public static int decreaseLikeCount(int bbsID) {
+		String SQL = "UPDATE BBS SET like_count = like_count - 1 WHERE bbsid = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			pstmt.executeUpdate();
+			
+			//좋아요 수가 감소시, 조회수도 증가하기 때문에
+			String sql = "update BBS set COUNT = COUNT - 1 where bbsid = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bbsID);
+			return pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터베이스 오류
+	}
+
+
 	public int increasecount(int bbsID) {
-		String SQL = "UPDATE BBS SET COUNT = COUNT + 1 WHERE bbsID = ?";
+		String SQL = "UPDATE BBS SET COUNT = COUNT + 1 WHERE bbsid = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, bbsID);
@@ -149,17 +187,17 @@ public class BbsDAO {
 		return -1;
 	}
 
-	public int delete(int bbsID) {
+	public int delete(int c) {
 		String SQL = "UPDATE BBS SET bbsAvailable = 0 WHERE bbsID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, bbsID);
-
+			pstmt.setInt(1, c);
 			return pstmt.executeUpdate(); 
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		return -1; // 데이터베이스 오류
 	}
+
 
 }
