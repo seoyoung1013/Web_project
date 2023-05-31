@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="bbs.BbsDAO"%>
-<%@ page import="bbs.Bbs"%>
+<%@ page import="bbs.Complain"%>
 <%@ page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
@@ -22,15 +22,15 @@ a, a:hover {
 </style>
 </head>
 <body>
-	<% 
-		String userID = null;
-		if (session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
-		}
-		int pageNumber = 1;
-		if (request.getParameter("pageNumber") != null) {
-			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-		}
+	<%
+	String userID = null;
+			if (session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+			}
+			int pageNumber = 1;
+			if (request.getParameter("pageNumber") != null) {
+		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+			}
 	%>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
@@ -45,14 +45,14 @@ a, a:hover {
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="bbs.jsp">민원게시판</a></li>
+				<li><a href="complain.jsp">민원게시판</a></li>
 				<li><a href="noticeboard.jsp">자유게시판</a></li>
 				<li><a href="noticeboard.jsp">홍보게시판</a></li>
 				<li><a href="noticeboard.jsp">스테디게시판</a></li>
 				<li><a href="noticeboard.jsp">졸업생게시판</a></li>
 			</ul>
-			<% 
-				if (userID == null) {
+			<%
+			if (userID == null) {
 			%>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -63,8 +63,8 @@ a, a:hover {
 						<li><a href="join.jsp">회원가입</a></li>
 					</ul></li>
 			</ul>
-			<% 		
-				} else {
+			<%
+			} else {
 			%>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -74,8 +74,8 @@ a, a:hover {
 						<li><a href="logoutAction.jsp">로그아웃</a></li>
 					</ul></li>
 			</ul>
-			<%		
-				}
+			<%
+			}
 			%>
 
 		</div>
@@ -94,11 +94,11 @@ a, a:hover {
 				</thead>
 				<tbody>
 					<%
-                    BbsDAO bbsDAO = new BbsDAO();
-                    ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
-                    int startNumber = (pageNumber - 1) * 10 + 1; // 시작 번호 계산
-                    for (int i = 0; i < list.size(); i++) {
-                %>
+					BbsDAO bbsDAO = new BbsDAO();
+					                    ArrayList<Complain> list = bbsDAO.getList(pageNumber);
+					                    int startNumber = (pageNumber - 1) * 10 + 1; // 시작 번호 계산
+					                    for (int i = 0; i < list.size(); i++) {
+					%>
 					<tr>
 						<td><%= startNumber + i %></td>
 						<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>">
@@ -114,12 +114,12 @@ a, a:hover {
 			<% 
             if (pageNumber != 1) {
         %>
-			<a href="bbs.jsp?pageNumber=<%=pageNumber - 1%>"
+			<a href="complain.jsp?pageNumber=<%=pageNumber - 1%>"
 				class="btn btn-success btn-arrow-left">이전</a>
 			<%
             } if (bbsDAO.nextPage(pageNumber + 1)) {
         %>
-			<a href="bbs.jsp?pageNumber=<%=pageNumber + 1%>"
+			<a href="complain.jsp?pageNumber=<%=pageNumber + 1%>"
 				class="btn btn-success btn-arrow-left">다음</a>
 			<%
             }

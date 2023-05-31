@@ -1,6 +1,6 @@
 package bbs;
 
-public class Bbs {
+public class Complain {
 	
 	private int bbsID;
 	private String bbsTitle;
@@ -10,6 +10,8 @@ public class Bbs {
 	private int bbsAvailable;
 	private int count;
 	private int like_count;
+	private int category;
+	
 	
 	public int getBbsID() {
 		return bbsID;
@@ -58,6 +60,12 @@ public class Bbs {
 	}
 	public void setBbsLike_count(int like_count) {
 		this.like_count = like_count;
+	}
+	public int getBbsCategory() {
+		return category;
+	}
+	public void setBbsCategory(int category) {
+		this.category = category;
 	}
 	
 	

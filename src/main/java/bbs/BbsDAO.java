@@ -54,15 +54,15 @@ public class BbsDAO {
 		return -1; // 데이터베이스 오류
 	}
 
-	public ArrayList<Bbs> getList(int pageNumber) {
-		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by bbsID desc) WHERE ROWNUM <=10";
-		ArrayList<Bbs> list = new ArrayList<Bbs>();
+	public ArrayList<Complain> getList(int pageNumber) {
+		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by bbsID desc) WHERE category =1 AND ROWNUM <=10";
+		ArrayList<Complain> list = new ArrayList<Complain>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext() - (pageNumber -1) * 10);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Bbs bbs = new Bbs();
+				Complain bbs = new Complain();
 				bbs.setBbsID(rs.getInt(1));
 				bbs.setBbsTitle(rs.getString(2));
 				bbs.setUserID(rs.getString(3));
@@ -71,6 +71,8 @@ public class BbsDAO {
 				bbs.setBbsAvailable(rs.getInt(1));
 				bbs.setBbsCount(rs.getInt(7));
 				bbs.setBbsLike_count(rs.getInt(8));
+				bbs.setBbsCategory(rs.getInt(9));
+				System.out.println(bbs.getBbsCategory());
 				list.add(bbs);
 			}         
 		} catch(Exception e) {
@@ -96,7 +98,7 @@ public class BbsDAO {
 		return false;
 	}
 
-	public Bbs getBbs(int bbsID) {
+	public Complain getBbs(int bbsID) {
 		String SQL = "SELECT * FROM BBS WHERE bbsID = ?";
 
 		try {
@@ -104,7 +106,7 @@ public class BbsDAO {
 			pstmt.setInt(1, bbsID);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				Bbs bbs = new Bbs();
+				Complain bbs = new Complain();
 				bbs.setBbsID(rs.getInt(1));
 				bbs.setBbsTitle(rs.getString(2));
 				bbs.setUserID(rs.getString(3));
@@ -113,6 +115,7 @@ public class BbsDAO {
 				bbs.setBbsAvailable(rs.getInt(1));
 				bbs.setBbsCount(rs.getInt(7));
 				bbs.setBbsLike_count(rs.getInt(8));
+				bbs.setBbsCategory(rs.getInt(9));
 				return bbs;
 			}			
 		} catch(Exception e) {

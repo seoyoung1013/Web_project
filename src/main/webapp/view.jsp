@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.Bbs"%>
+<%@ page import="bbs.Complain"%>
 <%@ page import="bbs.BbsDAO"%>
 <!DOCTYPE html>
 <html>
@@ -17,24 +17,24 @@
 <body>
 	<%
 	String userID = null;
-	if (session.getAttribute("userID") != null) {
-		userID = (String) session.getAttribute("userID");
-	}
-	int bbsID = 0;
-	if (request.getParameter("bbsID") != null) {
-		bbsID = Integer.parseInt(request.getParameter("bbsID"));
-	}
-	if (bbsID == 0) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('유효하지 않는 글입니다.')");
-		script.println("location.href = 'bbs.jsp'");
-		script.println("history.back()");
-		script.println("</script>");
-	}
-	BbsDAO bbsDAO = new BbsDAO();
-	Bbs bbs = bbsDAO.getBbs(bbsID);
-	bbsDAO.increasecount(bbsID);
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+		int bbsID = 0;
+		if (request.getParameter("bbsID") != null) {
+			bbsID = Integer.parseInt(request.getParameter("bbsID"));
+		}
+		if (bbsID == 0) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('유효하지 않는 글입니다.')");
+			script.println("location.href = 'bbs.jsp'");
+			script.println("history.back()");
+			script.println("</script>");
+		}
+		BbsDAO bbsDAO = new BbsDAO();
+		Complain bbs = bbsDAO.getBbs(bbsID);
+		bbsDAO.increasecount(bbsID);
 	%>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
@@ -139,7 +139,6 @@
 			</div>
 
 
-
 			<script>
 				
 				document.querySelector('#likeButton').addEventListener('click', function() {
@@ -184,13 +183,11 @@
 					        document.querySelector('#likeButton').disabled = false;
 					      }
 					    };
-					    xhr.send('bbsID=<%=bbsID%>&cancel=false');
-					  }
-					});
-
+					    xhr.send('bbsID=<%=bbsID%>
+				&cancel=false');
+									}
+								});
 			</script>
-
-			
 
 
 			<table class="table table-striped"

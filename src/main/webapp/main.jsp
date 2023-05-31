@@ -60,7 +60,7 @@
   	</div>
   	<div class="collapse navbar-collapse" id="#bs-example-navbar-collapse-1">
   		<ul class="nav navbar-nav" >
-  			<li><a href="bbs.jsp" class="menu-item">민원게시판</a></li>
+  			<li><a href="complain.jsp" class="menu-item">민원게시판</a></li>
   			<li><a href="bbs.jsp" class="menu-item">자유게시판</a></li>
   			<li><a href="bbs.jsp" class="menu-item">홍보게시판</a></li>
   			<li><a href="bbs.jsp" class="menu-item">스테디게시판</a></li>
