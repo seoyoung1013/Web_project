@@ -17,24 +17,24 @@
 <body>
 	<%
 	String userID = null;
-		if (session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
-		}
-		int bbsID = 0;
-		if (request.getParameter("bbsID") != null) {
-			bbsID = Integer.parseInt(request.getParameter("bbsID"));
-		}
-		if (bbsID == 0) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('유효하지 않는 글입니다.')");
-			script.println("location.href = 'bbs.jsp'");
-			script.println("history.back()");
-			script.println("</script>");
-		}
-		BbsDAO bbsDAO = new BbsDAO();
-		Complain bbs = bbsDAO.getBbs(bbsID);
-		bbsDAO.increasecount(bbsID);
+	if (session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+	}
+	int bbsID = 0;
+	if (request.getParameter("bbsID") != null) {
+		bbsID = Integer.parseInt(request.getParameter("bbsID"));
+	}
+	if (bbsID == 0) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('유효하지 않는 글입니다.')");
+		script.println("location.href = 'bbs.jsp'");
+		script.println("history.back()");
+		script.println("</script>");
+	}
+	BbsDAO bbsDAO = new BbsDAO();
+	Complain bbs = bbsDAO.getBbs(bbsID);
+	bbsDAO.increasecount(bbsID);
 	%>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
@@ -127,8 +127,10 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<a href="bbs.jsp" class="btn btn-primary">목록</a>
+						<a href="complain.jsp" class="btn btn-primary">목록</a>
 					</div>
+					
+					
 					<div class="col text-right">
 						<form action="likeAction.jsp" method="post">
 							<input type="hidden" name="bbsID" value="<%=bbsID%>">
@@ -138,55 +140,53 @@
 				</div>
 			</div>
 
-
 			<script>
-				
-				document.querySelector('#likeButton').addEventListener('click', function() {
-					  if (this.classList.contains('liked')) {
-					    // 좋아요 취소
-					    this.classList.remove('liked');
-					    this.disabled = true;
-					    this.style.backgroundColor = '';
-
-					    // 좋아요 취소 요청을 서버에 전송
-					    var xhr = new XMLHttpRequest();
-					    xhr.open('POST', 'unlikeAction.jsp', true);
-					    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-					    xhr.onreadystatechange = function() {
-					      if (xhr.readyState === 4 && xhr.status === 200) {
-					        // 서버 응답이 성공적으로 완료될 경우 동작
-					        // 여기에 추가 동작을 구현
-					        // 예: 좋아요 수 업데이트, UI 변경 등
-					        var newLikeCount = parseInt(xhr.responseText);
-					        document.querySelector('#likeButton').innerHTML = '♥ ';
-					        document.querySelector('#likeButton').disabled = false;
-					      }
-					    };
-					    xhr.send('bbsID=<%=bbsID%>&cancel=true');
-					  } else {
-					    // 좋아요 추가
-					    this.classList.add('liked');
-					    this.disabled = true;
-					    this.style.backgroundColor = 'red';
-
-					    // 좋아요 추가 요청을 서버에 전송
-					    var xhr = new XMLHttpRequest();
-					    xhr.open('POST', 'likeAction.jsp', true);
-					    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-					    xhr.onreadystatechange = function() {
-					      if (xhr.readyState === 4 && xhr.status === 200) {
-					        // 서버 응답이 성공적으로 완료될 경우 동작
-					        // 여기에 추가 동작을 구현
-					        // 예: 좋아요 수 업데이트, UI 변경 등
-					        var newLikeCount = parseInt(xhr.responseText);
-					        document.querySelector('#likeButton').innerHTML = '♡ ';
-					        document.querySelector('#likeButton').disabled = false;
-					      }
-					    };
-					    xhr.send('bbsID=<%=bbsID%>
-				&cancel=false');
-									}
-								});
+				  document.querySelector('#likeButton').addEventListener('click', function() {
+				    if (this.classList.contains('liked')) {
+				      // 좋아요 취소
+				      this.classList.remove('liked');
+				      this.disabled = true;
+				      this.style.backgroundColor = '';
+				      // 좋아요 취소 요청을 서버에 전송
+				      var xhr = new XMLHttpRequest();
+				      xhr.open('POST', 'unlikeAction.jsp', true);
+				      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				      xhr.onreadystatechange = function() {
+				        if (xhr.readyState === 4 && xhr.status === 200) {
+				          // 서버 응답이 성공적으로 완료될 경우 동작
+				          // 여기에 추가 동작을 구현
+				          // 예: 좋아요 수 업데이트, UI 변경 등
+				          var newLikeCount = parseInt(xhr.responseText);
+				          document.querySelector('#likeButton').innerHTML = '♥ ';
+				          document.querySelector('#likeButton').disabled = false;
+				          document.querySelector('#likeButton').classList.remove('liked'); // 좋아요 버튼 클래스 변경
+				        }
+				      };
+				      xhr.send('bbsID=<%=bbsID%>&cancel=true');
+				    } else {
+				      // 좋아요 추가
+				      this.classList.add('liked');
+				      this.disabled = true;
+				      this.style.backgroundColor = 'red';
+				      // 좋아요 추가 요청을 서버에 전송
+				      var xhr = new XMLHttpRequest();
+				      xhr.open('POST', 'likeAction.jsp', true);
+				      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				      xhr.onreadystatechange = function() {
+				        if (xhr.readyState === 4 && xhr.status === 200) {
+				          // 서버 응답이 성공적으로 완료될 경우 동작
+				          // 여기에 추가 동작을 구현
+				          // 예: 좋아요 수 업데이트, UI 변경 등
+				          var newLikeCount = parseInt(xhr.responseText);
+				          document.querySelector('#likeButton').innerHTML = '♡ ';
+				          document.querySelector('#likeButton').disabled = false;
+				          document.querySelector('#likeButton').classList.add('liked'); // 좋아요 버튼 클래스 변경
+				        }
+				      };
+				      xhr.send('bbsID=<%=bbsID%>
+								&cancel=false');
+													}
+												});
 			</script>
 
 

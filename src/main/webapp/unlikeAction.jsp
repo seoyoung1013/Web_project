@@ -14,5 +14,5 @@
 
 <!-- 좋아요 버튼을 눌렀을 때의 처리 후, 해당 게시물로 이동 -->
 <script>
-  window.location.href = 'view.jsp?bbsID=<%= bbsID %>';
+ window.location.href = 'view.jsp?bbsID=<%= bbsID %>';
 </script>

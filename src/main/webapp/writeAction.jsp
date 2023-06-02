@@ -11,8 +11,8 @@
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="complain" class="bbs.Complain" scope="page" />
-<jsp:setProperty name="Complain" property="bbsTitle" />
-<jsp:setProperty name="Complain" property="bbsContent" />
+<jsp:setProperty name="complain" property="bbsTitle" />
+<jsp:setProperty name="complain" property="bbsContent" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +51,7 @@
 					} else {
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
-						script.println("location.href = 'bbs.jsp'");
+						script.println("location.href = 'complain.jsp'");
 						script.println("</script>");
 					}
 				}

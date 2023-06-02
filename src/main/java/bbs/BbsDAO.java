@@ -54,7 +54,7 @@ public class BbsDAO {
 		return -1; // 데이터베이스 오류
 	}
 
-	public ArrayList<Complain> getList(int pageNumber) {
+	public ArrayList<Complain> Complain_getList(int pageNumber) {
 		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by bbsID desc) WHERE category =1 AND ROWNUM <=10";
 		ArrayList<Complain> list = new ArrayList<Complain>();
 		try {
@@ -81,6 +81,64 @@ public class BbsDAO {
 		return list;
 
 	}
+	
+	public ArrayList<Complain> Complain_getBestList(int pageNumber) {
+		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by count DESC, bbsID DESC) WHERE category =1 AND ROWNUM <=3";
+		ArrayList<Complain> list = new ArrayList<Complain>();
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber -1) * 10);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Complain bbs = new Complain();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setUserID(rs.getString(3));
+				bbs.setBbsDate(rs.getString(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(1));
+				bbs.setBbsCount(rs.getInt(7));
+				bbs.setBbsLike_count(rs.getInt(8));
+				bbs.setBbsCategory(rs.getInt(9));
+				System.out.println(bbs.getBbsCategory());
+				list.add(bbs);
+			}         
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+
+	}
+	
+	
+	public ArrayList<Free> Free_getList(int pageNumber) {
+		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by bbsID desc) WHERE category =2 AND ROWNUM <=10";
+		ArrayList<Free> list_Complain = new ArrayList<Free>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber -1) * 10);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Free bbs = new Free();
+				bbs.setFree_ID(rs.getInt(1));
+				bbs.setFree_Title(rs.getString(2));
+				bbs.setFree_userID(rs.getString(3));
+				bbs.setFree_Date(rs.getString(4));
+				bbs.setFree_Content(rs.getString(5));
+				bbs.setFree_Available(rs.getInt(1));
+				bbs.setFree_count(rs.getInt(7));
+				bbs.setFree_like_count(rs.getInt(8));
+				bbs.setFree_category(rs.getInt(9));
+				System.out.println(bbs.getFree_category());
+				list_Complain.add(bbs);
+			}         
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list_Complain;
+	}
+
 
 
 	public boolean nextPage(int pageNumber) {
