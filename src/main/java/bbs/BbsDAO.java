@@ -38,7 +38,7 @@ public class BbsDAO {
 	}
 
 	public int write(String bbsTitle, String userID, String bbsContent) {
-		String SQL = "INSERT INTO BBS (bbsID, bbsTitle, userID, bbsContent, bbsAvailable) VALUES (?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO BBS (bbsID, bbsTitle, userID, bbsContent, bbsAvailable, Category) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext());
@@ -46,7 +46,7 @@ public class BbsDAO {
 			pstmt.setString(3, userID);
 			pstmt.setString(4, bbsContent);
 			pstmt.setInt(5, 1);
-
+			pstmt.setInt(6, 1);
 			return pstmt.executeUpdate(); 
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -72,7 +72,6 @@ public class BbsDAO {
 				bbs.setBbsCount(rs.getInt(7));
 				bbs.setBbsLike_count(rs.getInt(8));
 				bbs.setBbsCategory(rs.getInt(9));
-				System.out.println(bbs.getBbsCategory());
 				list.add(bbs);
 			}         
 		} catch(Exception e) {
@@ -83,7 +82,7 @@ public class BbsDAO {
 	}
 	
 	public ArrayList<Complain> Complain_getBestList(int pageNumber) {
-		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by count DESC, bbsID DESC) WHERE category =1 AND ROWNUM <=3";
+		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by count DESC) WHERE category =1 AND ROWNUM <=3";
 		ArrayList<Complain> list = new ArrayList<Complain>();
 		
 		try {
@@ -101,7 +100,6 @@ public class BbsDAO {
 				bbs.setBbsCount(rs.getInt(7));
 				bbs.setBbsLike_count(rs.getInt(8));
 				bbs.setBbsCategory(rs.getInt(9));
-				System.out.println(bbs.getBbsCategory());
 				list.add(bbs);
 			}         
 		} catch(Exception e) {
@@ -129,7 +127,6 @@ public class BbsDAO {
 				bbs.setFree_count(rs.getInt(7));
 				bbs.setFree_like_count(rs.getInt(8));
 				bbs.setFree_category(rs.getInt(9));
-				System.out.println(bbs.getFree_category());
 				list_Complain.add(bbs);
 			}         
 		} catch(Exception e) {
@@ -158,7 +155,6 @@ public class BbsDAO {
 				bbs.setFree_count(rs.getInt(7));
 				bbs.setFree_count(rs.getInt(8));
 				bbs.setFree_category(rs.getInt(9));
-				System.out.println(bbs.getFree_category());
 				list.add(bbs);
 			}         
 		} catch(Exception e) {
@@ -187,7 +183,6 @@ public class BbsDAO {
 				bbs.setBbsCount(rs.getInt(7));
 				bbs.setBbsLike_count(rs.getInt(8));
 				bbs.setBbsCategory(rs.getInt(9));
-				System.out.println(bbs.getBbsCategory());
 				list.add(bbs);
 			}         
 		} catch(Exception e) {
@@ -216,7 +211,6 @@ public class BbsDAO {
 				bbs.setBbsCount(rs.getInt(7));
 				bbs.setBbsLike_count(rs.getInt(8));
 				bbs.setBbsCategory(rs.getInt(9));
-				System.out.println(bbs.getBbsCategory());
 				list.add(bbs);
 			}         
 		} catch(Exception e) {
@@ -244,7 +238,6 @@ public class BbsDAO {
 				bbs.setBbsCount(rs.getInt(7));
 				bbs.setBbsLike_count(rs.getInt(8));
 				bbs.setBbsCategory(rs.getInt(9));
-				System.out.println(bbs.getBbsCategory());
 				list.add(bbs);
 			}         
 		} catch(Exception e) {
@@ -273,7 +266,6 @@ public class BbsDAO {
 				bbs.setBbsCount(rs.getInt(7));
 				bbs.setBbsLike_count(rs.getInt(8));
 				bbs.setBbsCategory(rs.getInt(9));
-				System.out.println(bbs.getBbsCategory());
 				list.add(bbs);
 			}         
 		} catch(Exception e) {
@@ -302,7 +294,6 @@ public class BbsDAO {
 				bbs.setBbsCount(rs.getInt(7));
 				bbs.setBbsLike_count(rs.getInt(8));
 				bbs.setBbsCategory(rs.getInt(9));
-				System.out.println(bbs.getBbsCategory());
 				list.add(bbs);
 			}         
 		} catch(Exception e) {
@@ -331,7 +322,6 @@ public class BbsDAO {
 				bbs.setBbsCount(rs.getInt(7));
 				bbs.setBbsLike_count(rs.getInt(8));
 				bbs.setBbsCategory(rs.getInt(9));
-				System.out.println(bbs.getBbsCategory());
 				list.add(bbs);
 			}         
 		} catch(Exception e) {

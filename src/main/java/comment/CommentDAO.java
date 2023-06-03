@@ -80,8 +80,8 @@ public class CommentDAO {
 				cmt.setCommentAvailable(rs.getInt(4));
 				cmt.setCommentDate(rs.getString(5));
 				cmt.setBbsID(rs.getInt(6));
-				
 				list.add(cmt);
+				System.out.println(list);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
