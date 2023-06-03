@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="bbs.BbsDAO"%>
-<%@ page import="bbs.Complain"%>
+<%@ page import="bbs.PR"%>
 <%@ page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@ a, a:hover {
 </style>
 </head>
 <body>
-<%
+	<%
 	String userID =null;
 	if(session.getAttribute("userID")!=null){
 		userID = (String) session.getAttribute("userID");
@@ -101,7 +101,7 @@ a, a:hover {
 				<tbody>
 					<%
 					BbsDAO bbsBestDAO = new BbsDAO();
-					                    ArrayList<Complain> best_list = bbsBestDAO.Complain_getBestList(pageNumber);
+					                    ArrayList<PR> best_list = bbsBestDAO.PR_getBestList(pageNumber);
 					                    int best_startNumber = (pageNumber - 1) * 10 + 1; // 시작 번호 계산
 					                    for (int i = 0; i < best_list.size(); i++) {
 					%>
@@ -137,7 +137,7 @@ a, a:hover {
 				<tbody>
 					<%
 					BbsDAO bbsDAO = new BbsDAO();
-					                    ArrayList<Complain> list = bbsDAO.Complain_getList(pageNumber);
+					                    ArrayList<PR> list = bbsDAO.PR_getList(pageNumber);
 					                    int startNumber = (pageNumber - 1) * 10 + 1; // 시작 번호 계산
 					                    for (int i = 0; i < list.size(); i++) {
 					%>

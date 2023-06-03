@@ -23,63 +23,106 @@ a, a:hover {
 </head>
 <body>
 	<%
-	String userID = null;
-	if (session.getAttribute("userID") != null) {
+	String userID =null;
+	if(session.getAttribute("userID")!=null){
 		userID = (String) session.getAttribute("userID");
 	}
 	int pageNumber = 1;
-	if (request.getParameter("pageNumber") != null) {
-		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+	if(request.getParameter("pageNumber")!=null){
+		pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
 	}
-	%>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expanded="false">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
+%>
+  <nav class="navbar navbar-default">
+  		<%
+  			if(userID ==null){
+  		%>
+	  		<ul class="nav navbar-nav navbar-right">
+	  			<li class="dropdown">
+	  				<a href="#" class="dropdown-toggle" 
+		  				data-toggle="dropdown" role="button" aria-haspopup="true"
+		  				aria-expanded="false">접속하기<span class="caret"></span></a>
+	  				<ul class="dropdown-menu">
+	  				  <li><a href="login.jsp">로그인</a></li>
+	  				  <li><a href="join.jsp">회원가입</a></li>
+	  				</ul>
+	  			</li>
+	  		</ul>
+  		<%
+  			} else{
+  		%>
+  		<ul class="nav navbar-nav navbar-right">
+	  			<li class="dropdown">
+	  				<a href="#" class="dropdown-toggle" 
+		  				data-toggle="dropdown" role="button" aria-haspopup="true"
+		  				aria-expanded="false">회원관리<span class="caret"></span></a>
+	  				<ul class="dropdown-menu">
+	  				  <li><a href="logoutAction.jsp">로그아웃</a></li>
+	  				</ul>
+	  			</li>
+	  		</ul>
+  		<%
+  			}
+  		%>
+  		<div class="navbar-header">
+  		<button type="button" class="navbar-toggle collapsed"
+  			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+  			aria-expanded="false">
+  			<span class="icon-bar"></span>	
+  			<span class="icon-bar"></span>	
+  			<span class="icon-bar"></span>	
+  		</button>
+  		<a class="navbar-brand" href="main.jsp">
+  		<img src="images/mainlogo.jpg" alt="순천향대학교 청원게시판" ></a>
+  	</div>
+  	<div class="collapse navbar-collapse" id="#bs-example-navbar-collapse-1">
+  		<ul class="nav navbar-nav">
+  			<li><a href="complain.jsp" class="menu-item">민원게시판</a></li>
+  			<li><a href="free.jsp" class="menu-item">자유게시판</a></li>
+  			<li><a href="PR.jsp" class="menu-item">홍보게시판</a></li>
+  			<li><a href="Study.jsp" class="menu-item">스터디게시판</a></li>
+  			<li><a href="Graduate.jsp" class="menu-item">졸업생게시판</a></li>
+  		</ul>
+  	</div>
+  </nav>
+  <br>
+	
+	
+	<div class="container">
+		<div class="row">
+			<table class="table table-striped"
+				style="text-align: center; border: 1px solid #dddddd">
+				<thead>
+					<tr>
+						<th style="background-color: #eeeeee; text-align: center;">제목</th>
+						<th style="background-color: #eeeeee; text-align: center;">작성자</th>
+						<th style="background-color: #eeeeee; text-align: center;">작성일</th>
+						<th style="background-color: #eeeeee; text-align: center;">조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+					BbsDAO bbsBestDAO = new BbsDAO();
+					                    ArrayList<Free> best_list = bbsBestDAO.Free_getBestList(pageNumber);
+					                    int best_startNumber = (pageNumber - 1) * 10 + 1; // 시작 번호 계산
+					                    for (int i = 0; i < best_list.size(); i++) {
+					%>
+					<tr>
+						<td><a href="view.jsp?bbsID=<%= best_list.get(i).getFree_ID() %>">
+						<%= best_list.get(i).getFree_Title() %></a></td>
+						<td><%= best_list.get(i).getFree_userID() %></td>
+						<td><%= best_list.get(i).getFree_Date() %></td>
+						<td><%= best_list.get(i).getFree_Content() %></td>
+						
+					</tr>
+					<%      
+                     }
+                %>
+				</tbody>
+			</table>			
 		</div>
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="complain.jsp">민원게시판</a></li>
-				<li><a href="free.jsp">자유게시판</a></li>
-				<li><a href="noticeboard.jsp">홍보게시판</a></li>
-				<li><a href="noticeboard.jsp">스테디게시판</a></li>
-				<li><a href="noticeboard.jsp">졸업생게시판</a></li>
-			</ul>
-			<%
-			if (userID == null) {
-			%>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">접속하기<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="login.jsp">로그인</a></li>
-						<li><a href="join.jsp">회원가입</a></li>
-					</ul></li>
-			</ul>
-			<%
-			} else {
-			%>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">회원관리<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="logoutAction.jsp">로그아웃</a></li>
-					</ul></li>
-			</ul>
-			<%
-			}
-			%>
-
-		</div>
-	</nav>
+	</div>
+	
+	
 	<div class="container">
 		<div class="row">
 			<table class="table table-striped"

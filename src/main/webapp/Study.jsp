@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="bbs.BbsDAO"%>
-<%@ page import="bbs.Complain"%>
+<%@ page import="bbs.Study"%>
 <%@ page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
@@ -101,7 +101,7 @@ a, a:hover {
 				<tbody>
 					<%
 					BbsDAO bbsBestDAO = new BbsDAO();
-					                    ArrayList<Complain> best_list = bbsBestDAO.Complain_getBestList(pageNumber);
+					                    ArrayList<Study> best_list = bbsBestDAO.Study_getBestList(pageNumber);
 					                    int best_startNumber = (pageNumber - 1) * 10 + 1; // 시작 번호 계산
 					                    for (int i = 0; i < best_list.size(); i++) {
 					%>
@@ -137,7 +137,7 @@ a, a:hover {
 				<tbody>
 					<%
 					BbsDAO bbsDAO = new BbsDAO();
-					                    ArrayList<Complain> list = bbsDAO.Complain_getList(pageNumber);
+					                    ArrayList<Study> list = bbsDAO.Study_getList(pageNumber);
 					                    int startNumber = (pageNumber - 1) * 10 + 1; // 시작 번호 계산
 					                    for (int i = 0; i < list.size(); i++) {
 					%>

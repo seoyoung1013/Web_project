@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width", initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css?a">
 <link rel="stylesheet" href="css/custom.css">
-<title>순천향대학교 게시판</title>
+<title>순천향대학교 청원게시판</title>
 </head>
 <body>
 <%
@@ -56,15 +56,16 @@
   			<span class="icon-bar"></span>	
   			<span class="icon-bar"></span>	
   		</button>
-  		<a class="navbar-brand" href="main.jsp">순천향대학교 게시판</a>
+  		<a class="navbar-brand" href="main.jsp" >
+  		<img src="images/mainlogo.jpg" alt="순천향대학교 청원게시판" ></a>
   	</div>
   	<div class="collapse navbar-collapse" id="#bs-example-navbar-collapse-1">
   		<ul class="nav navbar-nav" >
   			<li><a href="complain.jsp" class="menu-item">민원게시판</a></li>
   			<li><a href="free.jsp" class="menu-item">자유게시판</a></li>
-  			<li><a href="bbs.jsp" class="menu-item">홍보게시판</a></li>
-  			<li><a href="bbs.jsp" class="menu-item">스테디게시판</a></li>
-  			<li><a href="bbs.jsp" class="menu-item">졸업생게시판</a></li>
+  			<li><a href="PR.jsp" class="menu-item">홍보게시판</a></li>
+  			<li><a href="Study.jsp" class="menu-item">스터디게시판</a></li>
+  			<li><a href="Graduate.jsp" class="menu-item">졸업생게시판</a></li>
   		</ul>
   	</div>
   </nav>
@@ -77,13 +78,13 @@
   		</ol>
   		<div class="carousel-inner">
   			<div class="item active">
-  				<img src="images/main1.jpg">
+  				<img src="images/main_1.jpg">
   			</div>
   			<div class="item">
-  				<img src="images/main2.jpg">
+  				<img src="images/main_2.jpg">
   			</div>
   			<div class="item">
-  				<img src="images/main3.jpg">
+  				<img src="images/main_3.jpg">
   			</div>
   		</div>
   		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -99,32 +100,34 @@
                 <div class="col-md-3">
                 	<img src="images/메모장.jpg" alt="test" class="img-responsive">
                 	 	<div class="carousel-caption">
-                	 		<h2>민원/제안</h2><br><br>
-                   				 <p><a class="btn btn-secondary" href="#" role="button">#생활불편</a></p>
-                   				 <p><a class="btn btn-secondary" href="#" role="button">#의사소통</a></p>
+                	 		<h2>민원/제안</h2><br>
+                   				 <p><a class="btn btn-secondary" href="#" role="button" style="font-size: 18px;">#생활불편</a></p>
+                   				 <p><a class="btn btn-secondary" href="#" role="button" style="font-size: 18px;">#의사소통<br><br></a></p>
                 	 	</div>
                 </div>
                 <div class="col-md-3">
                 	<img src="images/메모장.jpg" alt="test" class="img-responsive">
                 		<div class="carousel-caption">
-                	 		<h2>민원/제안</h2><br><br>
-                   				 <p><a class="btn btn-secondary" href="#" role="button">#생활불편</a></p>
-                   				 <p><a class="btn btn-secondary" href="#" role="button">#의사소통</a></p>
+                	 		<h2>게시 요청</h2><br>
+                   				 <p><a class="btn btn-secondary" href="#" role="button" style="font-size: 18px;">#동아리게시요청</a></p>
+                   				 <p><a class="btn btn-secondary" href="#" role="button" style="font-size: 16px;">#공모전/대외활동<br>게시요청</a></p>
                 	 	</div>
                 </div>
                 <div class="col-md-3">
                 	<img src="images/메모장.jpg" alt="test" class="img-responsive">
                 		<div class="carousel-caption">
-                	 		<h2>민원/제안</h2><br><br>
-                   				 <p><a class="btn btn-secondary" href="#" role="button">#생활불편</a></p>
-                   				 <p><a class="btn btn-secondary" href="#" role="button">#의사소통</a></p>
+                	 		<h2>스터디모집</h2>
+                   				 <p><a class="btn btn-secondary" href="#" role="button"style="font-size: 16px;">#학과스터디</a></p>
+                   				 <p><a class="btn btn-secondary" href="#" role="button"style="font-size: 16px;">#프로그래밍</a></p>
+                   				 <p><a class="btn btn-secondary" href="#" role="button"style="font-size: 16px;">#어학</a></p>
                 	 	</div>
                 </div>
                 <div class="col-md-3">
                 	<img src="images/메모장.jpg" alt="test" class="img-responsive">
                 		<div class="carousel-caption">
-                			<h2>전화안내</h2><br><br>
-                   				 <p>저나번호 적어라</p><br><br><br>
+                			<h2>전화안내</h2><br>
+                   				 <p style="font-size: 15px;">학생지원팀<br>&#40;Tel&#41;041-530-1034</p>
+                   				 <p style="font-size: 15px;">SRC센터 교육지원팀<br>&#40;Tel&#41;041-530-1759</p><br>
                 	 	</div>
                 </div>
             </div>

@@ -111,7 +111,6 @@ public class BbsDAO {
 
 	}
 	
-	
 	public ArrayList<Free> Free_getList(int pageNumber) {
 		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by bbsID desc) WHERE category =2 AND ROWNUM <=10";
 		ArrayList<Free> list_Complain = new ArrayList<Free>();
@@ -140,6 +139,208 @@ public class BbsDAO {
 	}
 
 
+	public ArrayList<Free> Free_getBestList(int pageNumber) {
+		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by count DESC, bbsID DESC) WHERE category =2 AND ROWNUM <=3";
+		ArrayList<Free> list = new ArrayList<Free>();
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber -1) * 10);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Free bbs = new Free();
+				bbs.setFree_ID(rs.getInt(1));
+				bbs.setFree_Title(rs.getString(2));
+				bbs.setFree_userID(rs.getString(3));
+				bbs.setFree_Date(rs.getString(4));
+				bbs.setFree_Content(rs.getString(5));
+				bbs.setFree_Available(rs.getInt(1));
+				bbs.setFree_count(rs.getInt(7));
+				bbs.setFree_count(rs.getInt(8));
+				bbs.setFree_category(rs.getInt(9));
+				System.out.println(bbs.getFree_category());
+				list.add(bbs);
+			}         
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+
+	}
+	
+
+	public ArrayList<PR> PR_getList(int pageNumber) {
+		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by bbsID desc) WHERE category =3 AND ROWNUM <=10";
+		ArrayList<PR> list = new ArrayList<PR>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber -1) * 10);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				PR bbs = new PR();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setUserID(rs.getString(3));
+				bbs.setBbsDate(rs.getString(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(1));
+				bbs.setBbsCount(rs.getInt(7));
+				bbs.setBbsLike_count(rs.getInt(8));
+				bbs.setBbsCategory(rs.getInt(9));
+				System.out.println(bbs.getBbsCategory());
+				list.add(bbs);
+			}         
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+
+	}
+	
+	public ArrayList<PR> PR_getBestList(int pageNumber) {
+		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by count DESC, bbsID DESC) WHERE category =3 AND ROWNUM <=3";
+		ArrayList<PR> list = new ArrayList<PR>();
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber -1) * 10);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				PR bbs = new PR();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setUserID(rs.getString(3));
+				bbs.setBbsDate(rs.getString(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(1));
+				bbs.setBbsCount(rs.getInt(7));
+				bbs.setBbsLike_count(rs.getInt(8));
+				bbs.setBbsCategory(rs.getInt(9));
+				System.out.println(bbs.getBbsCategory());
+				list.add(bbs);
+			}         
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+
+	}
+	
+	public ArrayList<Study> Study_getList(int pageNumber) {
+		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by bbsID desc) WHERE category =4 AND ROWNUM <=10";
+		ArrayList<Study> list = new ArrayList<Study>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber -1) * 10);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Study bbs = new Study();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setUserID(rs.getString(3));
+				bbs.setBbsDate(rs.getString(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(1));
+				bbs.setBbsCount(rs.getInt(7));
+				bbs.setBbsLike_count(rs.getInt(8));
+				bbs.setBbsCategory(rs.getInt(9));
+				System.out.println(bbs.getBbsCategory());
+				list.add(bbs);
+			}         
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+
+	}
+	
+	public ArrayList<Study> Study_getBestList(int pageNumber) {
+		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by count DESC, bbsID DESC) WHERE category =4 AND ROWNUM <=3";
+		ArrayList<Study> list = new ArrayList<Study>();
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber -1) * 10);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Study bbs = new Study();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setUserID(rs.getString(3));
+				bbs.setBbsDate(rs.getString(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(1));
+				bbs.setBbsCount(rs.getInt(7));
+				bbs.setBbsLike_count(rs.getInt(8));
+				bbs.setBbsCategory(rs.getInt(9));
+				System.out.println(bbs.getBbsCategory());
+				list.add(bbs);
+			}         
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+
+	}
+	
+	
+	public ArrayList<Graduate> Graduate_getList(int pageNumber) {
+		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by bbsID desc) WHERE category =5 AND ROWNUM <=10";
+		ArrayList<Graduate> list = new ArrayList<Graduate>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber -1) * 10);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Graduate bbs = new Graduate();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setUserID(rs.getString(3));
+				bbs.setBbsDate(rs.getString(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(1));
+				bbs.setBbsCount(rs.getInt(7));
+				bbs.setBbsLike_count(rs.getInt(8));
+				bbs.setBbsCategory(rs.getInt(9));
+				System.out.println(bbs.getBbsCategory());
+				list.add(bbs);
+			}         
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+
+	}
+	
+	public ArrayList<Graduate> Graduate_getBestList(int pageNumber) {
+		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by count DESC, bbsID DESC) WHERE category =5 AND ROWNUM <=3";
+		ArrayList<Graduate> list = new ArrayList<Graduate>();
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber -1) * 10);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Graduate bbs = new Graduate();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setUserID(rs.getString(3));
+				bbs.setBbsDate(rs.getString(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(1));
+				bbs.setBbsCount(rs.getInt(7));
+				bbs.setBbsLike_count(rs.getInt(8));
+				bbs.setBbsCategory(rs.getInt(9));
+				System.out.println(bbs.getBbsCategory());
+				list.add(bbs);
+			}         
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+
+	}
+	
 
 	public boolean nextPage(int pageNumber) {
 		String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1";
