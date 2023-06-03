@@ -106,7 +106,7 @@ a, a:hover {
 					                    for (int i = 0; i < best_list.size(); i++) {
 					%>
 					<tr>
-						<td><a href="view.jsp?bbsID=<%= best_list.get(i).getBbsID() %>">
+						<td><a href="viewPR.jsp?bbsID=<%= best_list.get(i).getBbsID() %>">
 						<%= best_list.get(i).getBbsTitle() %></a></td>
 						<td><%= best_list.get(i).getUserID() %></td>
 						<td><%= best_list.get(i).getBbsDate() %></td>
@@ -143,7 +143,7 @@ a, a:hover {
 					%>
 					<tr>
 						<td><%= startNumber + i %></td>
-						<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>">
+						<td><a href="viewPR.jsp?bbsID=<%= list.get(i).getBbsID() %>">
 						<%= list.get(i).getBbsTitle() %></a></td>
 						<td><%= list.get(i).getUserID() %></td>
 						<td><%= list.get(i).getBbsDate() %></td>
@@ -156,17 +156,17 @@ a, a:hover {
 			<% 
             if (pageNumber != 1) {
         %>
-			<a href="complain.jsp?pageNumber=<%=pageNumber - 1%>"
+			<a href="PR.jsp?pageNumber=<%=pageNumber - 1%>"
 				class="btn btn-success btn-arrow-left">이전</a>
 			<%
             } if (bbsDAO.nextPage(pageNumber + 1)) {
         %>
-			<a href="complain.jsp?pageNumber=<%=pageNumber + 1%>"
+			<a href="PR.jsp?pageNumber=<%=pageNumber + 1%>"
 				class="btn btn-success btn-arrow-left">다음</a>
 			<%
             }
         %>
-			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+			<a href="writePR.jsp" class="btn btn-primary pull-right">글쓰기</a>
 		</div>
 	</div>
 

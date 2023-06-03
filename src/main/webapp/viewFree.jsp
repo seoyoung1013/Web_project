@@ -141,18 +141,18 @@
 
 					<br>
 					
-					<a href="complain.jsp" class="btn btn-primary">목록</a>
+					<a href="free.jsp" class="btn btn-primary">목록</a>
 					<%
 					if (userID != null && userID.equals(bbs.getUserID())) {
 					%>
-					<a href="update.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">수정</a>
+					<a href="updateFree.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">수정</a>
 					<a onclick="return confirm('정말로 삭제하시겠습니까?')"
-						href="deleteAction.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">삭제</a>
+						href="deleteActionFree.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">삭제</a>
 					<%
 					}
 					%>
 				
-				<form action="likeAction.jsp" method="post">
+				<form action="likeActionFree.jsp" method="post">
 					<input type="hidden" name="bbsID" value="<%=bbsID%>">
 					<button type="submit" class="btn btn-primary" id="likeButton">♥</button>
 				</form>
@@ -246,7 +246,7 @@
                   this.style.backgroundColor = 'red';
                   // 좋아요 추가 요청을 서버에 전송
                   var xhr = new XMLHttpRequest();
-                  xhr.open('POST', 'likeAction.jsp', true);
+                  xhr.open('POST', 'likeActionFree.jsp', true);
                   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                   xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4 && xhr.status === 200) {

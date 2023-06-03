@@ -37,7 +37,7 @@ public class BbsDAO {
 		return -1; // 데이터베이스 오류
 	}
 
-	public int write(String bbsTitle, String userID, String bbsContent) {
+	public int write_complain(String bbsTitle, String userID, String bbsContent) {
 		String SQL = "INSERT INTO BBS (bbsID, bbsTitle, userID, bbsContent, bbsAvailable, Category) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -53,6 +53,80 @@ public class BbsDAO {
 		}
 		return -1; // 데이터베이스 오류
 	}
+	
+	public int write_Free(String bbsTitle, String userID, String bbsContent) {
+		String SQL = "INSERT INTO BBS (bbsID, bbsTitle, userID, bbsContent, bbsAvailable, Category) VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext());
+			pstmt.setString(2, bbsTitle);
+			pstmt.setString(3, userID);
+			pstmt.setString(4, bbsContent);
+			pstmt.setInt(5, 1);
+			pstmt.setInt(6, 2);
+			return pstmt.executeUpdate(); 
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터베이스 오류
+	}
+
+	
+	public int write_PR(String bbsTitle, String userID, String bbsContent) {
+		String SQL = "INSERT INTO BBS (bbsID, bbsTitle, userID, bbsContent, bbsAvailable, Category) VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext());
+			pstmt.setString(2, bbsTitle);
+			pstmt.setString(3, userID);
+			pstmt.setString(4, bbsContent);
+			pstmt.setInt(5, 1);
+			pstmt.setInt(6, 3);
+			return pstmt.executeUpdate(); 
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터베이스 오류
+	}
+
+	
+	public int write_Study(String bbsTitle, String userID, String bbsContent) {
+		String SQL = "INSERT INTO BBS (bbsID, bbsTitle, userID, bbsContent, bbsAvailable, Category) VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext());
+			pstmt.setString(2, bbsTitle);
+			pstmt.setString(3, userID);
+			pstmt.setString(4, bbsContent);
+			pstmt.setInt(5, 1);
+			pstmt.setInt(6, 4);
+			return pstmt.executeUpdate(); 
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터베이스 오류
+	}
+
+	
+	public int write_Graduate(String bbsTitle, String userID, String bbsContent) {
+		String SQL = "INSERT INTO BBS (bbsID, bbsTitle, userID, bbsContent, bbsAvailable, Category) VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext());
+			pstmt.setString(2, bbsTitle);
+			pstmt.setString(3, userID);
+			pstmt.setString(4, bbsContent);
+			pstmt.setInt(5, 1);
+			pstmt.setInt(6, 5);
+			return pstmt.executeUpdate(); 
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터베이스 오류
+	}
+
+	
+	
 
 	public ArrayList<Complain> Complain_getList(int pageNumber) {
 		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by bbsID desc) WHERE category =1 AND ROWNUM <=10";

@@ -101,25 +101,25 @@
                 	<img src="images/메모장.jpg" alt="test" class="img-responsive">
                 	 	<div class="carousel-caption">
                 	 		<h2>민원/제안</h2><br>
-                   				 <p><a class="btn btn-secondary" href="#" role="button" style="font-size: 18px;">#생활불편</a></p>
-                   				 <p><a class="btn btn-secondary" href="#" role="button" style="font-size: 18px;">#의사소통<br><br></a></p>
+                   				 <p><a class="btn btn-secondary" href="writeComplain.jsp" role="button" style="font-size: 18px;">#생활불편</a></p>
+                   				 <p><a class="btn btn-secondary" href="writeComplain.jsp" role="button" style="font-size: 18px;">#의사소통<br><br></a></p>
                 	 	</div>
                 </div>
                 <div class="col-md-3">
                 	<img src="images/메모장.jpg" alt="test" class="img-responsive">
                 		<div class="carousel-caption">
                 	 		<h2>게시 요청</h2><br>
-                   				 <p><a class="btn btn-secondary" href="#" role="button" style="font-size: 18px;">#동아리게시요청</a></p>
-                   				 <p><a class="btn btn-secondary" href="#" role="button" style="font-size: 16px;">#공모전/대외활동<br>게시요청</a></p>
+                   				 <p><a class="btn btn-secondary" href="writePR.jsp" role="button" style="font-size: 18px;">#동아리게시요청</a></p>
+                   				 <p><a class="btn btn-secondary" href="writePR.jsp" role="button" style="font-size: 16px;">#공모전/대외활동<br>게시요청</a></p>
                 	 	</div>
                 </div>
                 <div class="col-md-3">
                 	<img src="images/메모장.jpg" alt="test" class="img-responsive">
                 		<div class="carousel-caption">
                 	 		<h2>스터디모집</h2>
-                   				 <p><a class="btn btn-secondary" href="#" role="button"style="font-size: 16px;">#학과스터디</a></p>
-                   				 <p><a class="btn btn-secondary" href="#" role="button"style="font-size: 16px;">#프로그래밍</a></p>
-                   				 <p><a class="btn btn-secondary" href="#" role="button"style="font-size: 16px;">#어학</a></p>
+                   				 <p><a class="btn btn-secondary" href="writeStudy.jsp" role="button"style="font-size: 16px;">#학과스터디</a></p>
+                   				 <p><a class="btn btn-secondary" href="writeStudy.jsp" role="button"style="font-size: 16px;">#프로그래밍</a></p>
+                   				 <p><a class="btn btn-secondary" href="writeStudy.jsp" role="button"style="font-size: 16px;">#어학</a></p>
                 	 	</div>
                 </div>
                 <div class="col-md-3">

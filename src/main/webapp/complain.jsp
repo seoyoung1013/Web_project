@@ -106,7 +106,7 @@ a, a:hover {
 					                    for (int i = 0; i < best_list.size(); i++) {
 					%>
 					<tr>
-						<td><a href="view.jsp?bbsID=<%= best_list.get(i).getBbsID() %>">
+						<td><a href="viewComplain.jsp?bbsID=<%= best_list.get(i).getBbsID() %>">
 						<%= best_list.get(i).getBbsTitle() %></a></td>
 						<td><%= best_list.get(i).getUserID() %></td>
 						<td><%= best_list.get(i).getBbsDate() %></td>
@@ -143,7 +143,7 @@ a, a:hover {
 					%>
 					<tr>
 						<td><%= startNumber + i %></td>
-						<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>">
+						<td><a href="viewComplain.jsp?bbsID=<%= list.get(i).getBbsID() %>">
 						<%= list.get(i).getBbsTitle() %></a></td>
 						<td><%= list.get(i).getUserID() %></td>
 						<td><%= list.get(i).getBbsDate() %></td>
@@ -166,7 +166,7 @@ a, a:hover {
 			<%
             }
         %>
-			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+			<a href="writeComplain.jsp" class="btn btn-primary pull-right">글쓰기</a>
 		</div>
 	</div>
 
