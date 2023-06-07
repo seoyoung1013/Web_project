@@ -18,13 +18,17 @@
            <span class="icon-bar"></span>   
            <span class="icon-bar"></span>   
         </button>
-        <a class="navbar-brand" href="main.jsp">순천향대학교 게시판 웹 사이트</a>
-     </div>
-     <div class="collapse navbar-collapse" id="#bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-           <li><a href="main.jsp">메인</a></li>
-           <li><a href="bbs.jsp">게시판</a></li>
-        </ul>
+       	<a class="navbar-brand" href="main.jsp" >
+  		<img src="images/mainlogo.jpg" alt="순천향대학교 청원게시판" ></a>
+  	</div>
+  	<div class="collapse navbar-collapse" id="#bs-example-navbar-collapse-1">
+  		<ul class="nav navbar-nav" >
+  			<li><a href="complain.jsp" class="menu-item">민원게시판</a></li>
+  			<li><a href="free.jsp" class="menu-item">자유게시판</a></li>
+  			<li><a href="PR.jsp" class="menu-item">홍보게시판</a></li>
+  			<li><a href="Study.jsp" class="menu-item">스터디게시판</a></li>
+  			<li><a href="Graduate.jsp" class="menu-item">졸업생게시판</a></li>
+  		</ul>
         <ul class="nav navbar-nav navbar-right">
            <li class="dropdown">
               <a href="#" class="dropdown-toggle" 
@@ -45,7 +49,7 @@
 				<form method="post" action="joinAction.jsp">
 					<h3 style="text-align: center;">회원가입 화면</h3>
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="아이디"
+						<input type="text" class="form-control" placeholder="학번"
 							name="userID" maxlength="20">
 					</div>
 					<div class="form-group">
