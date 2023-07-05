@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="bbs.BbsDAO" %>
-<%@ page import="bbs.Complain" %>
+<%@ page import="bbs.Graduate" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.PreparedStatement" %>
@@ -10,9 +10,9 @@
 <%@ page import="oracle.jdbc.driver.OracleDriver" %>
 
 <% request.setCharacterEncoding("UTF-8"); %>
-<jsp:useBean id="complain" class="bbs.Complain" scope="page" />
-<jsp:setProperty name="complain" property="bbsTitle" />
-<jsp:setProperty name="complain" property="bbsContent" />
+<jsp:useBean id="graduate" class="bbs.Graduate" scope="page" />
+<jsp:setProperty name="graduate" property="bbsTitle" />
+<jsp:setProperty name="graduate" property="bbsContent" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +33,7 @@
 			script.println("history.back()");
 			script.println("</script>");
 		} else {
-			if (complain.getBbsTitle() == null || complain.getBbsContent() == null) {
+			if (graduate.getBbsTitle() == null || graduate.getBbsContent() == null) {
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
 					script.println("alert('입력이 안된 사항이 있습니다.')");
@@ -41,7 +41,7 @@
 					script.println("</script>");
 				} else {
 					BbsDAO bbsDAO = new BbsDAO();
-					int result = bbsDAO.write_Graduate(complain.getBbsTitle(), userID, complain.getBbsContent());
+					int result = bbsDAO.write_Graduate(graduate.getBbsTitle(), userID, graduate.getBbsContent());
 					if (result == -1) {
 						PrintWriter script = response.getWriter();
 						script.println("<script>");

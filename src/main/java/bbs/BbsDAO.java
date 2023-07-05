@@ -211,7 +211,7 @@ public class BbsDAO {
 
 
 	public ArrayList<Free> Free_getBestList(int pageNumber) {
-		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by count DESC, bbsID DESC) WHERE category =2 AND ROWNUM <=3";
+		String SQL = "SELECT bbsid, bbstitle,userid,TO_CHAR(BBSDATE,'RR/MM/DD'),BBSCONTENT,BBSAVAILABLE, COUNT, LIKE_COUNT, CATEGORY FROM (SELECT * FROM bbs WHERE bbsID < ? and bbsAvailable = 1 order by count DESC) WHERE category =2 AND ROWNUM <=3";
 		ArrayList<Free> list = new ArrayList<Free>();
 		
 		try {
@@ -227,7 +227,7 @@ public class BbsDAO {
 				bbs.setFree_Content(rs.getString(5));
 				bbs.setFree_Available(rs.getInt(1));
 				bbs.setFree_count(rs.getInt(7));
-				bbs.setFree_count(rs.getInt(8));
+				bbs.setFree_like_count(rs.getInt(8));
 				bbs.setFree_category(rs.getInt(9));
 				list.add(bbs);
 			}         

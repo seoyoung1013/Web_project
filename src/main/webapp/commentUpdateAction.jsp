@@ -79,7 +79,7 @@
 				} else {
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
-					script.println("location.href= \'view.jsp?bbsID="+bbsID+"\'");
+					script.println("location.href= \'viewPR.jsp?bbsID="+bbsID+"\'");
 					script.println("</script>");
 				}
 			}

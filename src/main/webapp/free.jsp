@@ -111,7 +111,7 @@ a, a:hover {
 						<%= best_list.get(i).getFree_Title() %></a></td>
 						<td><%= best_list.get(i).getFree_userID() %></td>
 						<td><%= best_list.get(i).getFree_Date() %></td>
-						<td><%= best_list.get(i).getFree_Content() %></td>
+						<td><%= best_list.get(i).getFree_count() %></td>
 						
 					</tr>
 					<%      

@@ -120,8 +120,7 @@
 					</tr>
 					<tr>
 						<td>작성일자</td>
-						<td colspan="2"><%=bbs.getBbsDate().substring(0, 11) + bbs.getBbsDate().substring(11, 13) + "시"
-		+ bbs.getBbsDate().substring(14, 16) + "분 "%></td>
+						<td colspan="2"><%=bbs.getBbsDate().substring(0, 11)%></td>
 					</tr>
 
 					<tr>

@@ -27,15 +27,17 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="bbs.jsp">민원게시판</a></li>
-				<li><a href="noticeboard.jsp">자유게시판</a></li>
-				<li><a href="noticeboard.jsp">홍보게시판</a></li>
-				<li><a href="noticeboard.jsp">스테디게시판</a></li>
-				<li><a href="noticeboard.jsp">졸업생게시판</a></li>
+			<a class="navbar-brand" href="main.jsp" >
+  		<img src="images/mainlogo.jpg" alt="순천향대학교 청원게시판" ></a>
+  	</div>
+  	<div class="collapse navbar-collapse" id="#bs-example-navbar-collapse-1">
+  		<ul class="nav navbar-nav" >
+  			<li><a href="complain.jsp" class="menu-item">민원게시판</a></li>
+  			<li><a href="free.jsp" class="menu-item">자유게시판</a></li>
+  			<li><a href="PR.jsp" class="menu-item">홍보게시판</a></li>
+  			<li><a href="Study.jsp" class="menu-item">스터디게시판</a></li>
+  			<li><a href="Graduate.jsp" class="menu-item">졸업생게시판</a></li>
+  		</ul>li><a href="noticeboard.jsp">졸업생게시판</a></li>
 			</ul>
 			<% 
 				if (userID == null) {

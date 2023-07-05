@@ -51,7 +51,7 @@
 					} else {
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
-						script.println("location.href = 'Free.jsp'");
+						script.println("location.href = 'free.jsp'");
 						script.println("</script>");
 					}
 				}
